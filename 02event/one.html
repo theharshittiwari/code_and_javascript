@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Html Events</title>
+</head>
+
+<body style="background-color: #414141; color: aliceblue;">
+
+    <h2>Amazing Image</h2>
+
+    <ul id="images" > 
+        <li>
+            <img src="pexels-aleksandar-pavloski-2163965862-39399880.jpg" width="200"  id="monumen" height="150px" alt=" " > 
+        </li>
+
+        <li>
+            <img src="pexels-hilal-93673212-39459527.jpg" width="200" id="taj" height="150px" alt=" ">
+        </li>
+
+        <li>
+            <img src="pexels-yasar-baskurt-706180077-37741538.jpg" width="200" id="women" height="150px" alt=" ">
+        </li>
+
+        <li>
+            <img src="pexels-yazeed-jalal-2163947969-39447527.jpg" width="200" id="owl" height="150px" alt=" "  >
+        </li>
+
+        <li>
+            <a href="https://www.google.com/" style="color: aliceblue;" id="google"> google</a>
+        </li>
+    </ul>
+
+</body>
+<script>
+
+    document.getElementById('owl').onclick=function(){
+        alert('alert owl clicked')
+    }
+
+    attachevent()
+    jQuery-on
+
+    type,timestamp,default prevented
+
+    document.getElementById('owl').addEventListener('click',function(){
+        alert('owl clicked again')
+    })
+
+    document.getElementById('owl').addEventListener('click',function(e){
+        console.log(e)
+    })
+
+    Below code is the example of Event Bubbling Up
+    document.getElementById('images').addEventListener('click',function(e){
+        console.log("click inside the ul")
+    },false)
+    document.getElementById('owl').addEventListener('click',function(e){
+                console.log("click on the owl")
+                e.stopPropagation()
+    },false)
+
+    Below code is the example of Event Capturing
+    document.getElementById('images').addEventListener('click',function(e){
+        console.log("click inside the ul")
+    },true)
+    document.getElementById('owl').addEventListener('click',function(e){
+                console.log("click on the owl")
+
+    },true)
+
+    document.getElementById('google').addEventListener('click',function(e){
+        console.log("google clicked")
+        e.preventDefault()
+        e.stopPropagation()
+
+    })
+
+    document.querySelector('#images').addEventListener('click',function(e){
+        // console.log(e.target.parentNode)
+        console.log(e.target.tagName)
+        if(e.target.tagName==='IMG'){
+        let removeIt=e.target.parentNode
+        removeIt.remove()
+        }
+       
+
+    })
+
+</script>
+</html>
